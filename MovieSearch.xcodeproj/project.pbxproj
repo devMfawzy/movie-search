@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		5B9A2A83245486CB00D4741D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9A2A82245486CB00D4741D /* AppDelegate.swift */; };
-		5B9A2A87245486CB00D4741D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9A2A86245486CB00D4741D /* ViewController.swift */; };
+		5B9A2A87245486CB00D4741D /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9A2A86245486CB00D4741D /* SearchViewController.swift */; };
 		5B9A2A8A245486CC00D4741D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B9A2A88245486CC00D4741D /* Main.storyboard */; };
 		5B9A2A8C245486D300D4741D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5B9A2A8B245486D300D4741D /* Assets.xcassets */; };
 		5B9A2A8F245486D300D4741D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5B9A2A8D245486D300D4741D /* LaunchScreen.storyboard */; };
+		5B9A2A972454946700D4741D /* UISearchBar+TextFieldColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5B9A2A962454946600D4741D /* UISearchBar+TextFieldColor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5B9A2A7F245486CB00D4741D /* MovieSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5B9A2A82245486CB00D4741D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		5B9A2A86245486CB00D4741D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		5B9A2A86245486CB00D4741D /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		5B9A2A89245486CC00D4741D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5B9A2A8B245486D300D4741D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5B9A2A8E245486D300D4741D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5B9A2A90245486D300D4741D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5B9A2A962454946600D4741D /* UISearchBar+TextFieldColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISearchBar+TextFieldColor.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -38,6 +40,7 @@
 		5B9A2A76245486CB00D4741D = {
 			isa = PBXGroup;
 			children = (
+				5B9A2A982454947700D4741D /* Extensions */,
 				5B9A2A81245486CB00D4741D /* MovieSearch */,
 				5B9A2A80245486CB00D4741D /* Products */,
 			);
@@ -55,13 +58,21 @@
 			isa = PBXGroup;
 			children = (
 				5B9A2A82245486CB00D4741D /* AppDelegate.swift */,
-				5B9A2A86245486CB00D4741D /* ViewController.swift */,
+				5B9A2A86245486CB00D4741D /* SearchViewController.swift */,
 				5B9A2A88245486CC00D4741D /* Main.storyboard */,
 				5B9A2A8B245486D300D4741D /* Assets.xcassets */,
 				5B9A2A8D245486D300D4741D /* LaunchScreen.storyboard */,
 				5B9A2A90245486D300D4741D /* Info.plist */,
 			);
 			path = MovieSearch;
+			sourceTree = "<group>";
+		};
+		5B9A2A982454947700D4741D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5B9A2A962454946600D4741D /* UISearchBar+TextFieldColor.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +146,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5B9A2A87245486CB00D4741D /* ViewController.swift in Sources */,
+				5B9A2A87245486CB00D4741D /* SearchViewController.swift in Sources */,
+				5B9A2A972454946700D4741D /* UISearchBar+TextFieldColor.swift in Sources */,
 				5B9A2A83245486CB00D4741D /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
