@@ -42,6 +42,11 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="wPN-y4-l6s"/>
                                 </connections>
                             </searchBar>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" id="BFm-jw-24d">
+                                <rect key="frame" x="0.0" y="426" width="414" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.0078431372550000003" green="0.46666666670000001" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -50,12 +55,15 @@
                             <constraint firstAttribute="bottom" secondItem="atS-cD-MV9" secondAttribute="bottom" id="Jdx-hr-SaA"/>
                             <constraint firstItem="yIV-Af-FCI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Ml4-zA-MEh"/>
                             <constraint firstItem="yIV-Af-FCI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Npk-hr-6R5"/>
+                            <constraint firstItem="BFm-jw-24d" firstAttribute="centerX" secondItem="atS-cD-MV9" secondAttribute="centerX" id="OpP-ev-KWz"/>
                             <constraint firstAttribute="trailing" secondItem="atS-cD-MV9" secondAttribute="trailing" id="fHb-R4-SXO"/>
+                            <constraint firstItem="BFm-jw-24d" firstAttribute="centerY" secondItem="atS-cD-MV9" secondAttribute="centerY" id="hBg-OV-yma"/>
                             <constraint firstItem="atS-cD-MV9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vvX-Ri-aKD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="BFm-jw-24d" id="fgj-1r-n4E"/>
                         <outlet property="searchBar" destination="yIV-Af-FCI" id="1lq-3P-jnn"/>
                         <outlet property="tableView" destination="atS-cD-MV9" id="0QN-7W-zaN"/>
                     </connections>
