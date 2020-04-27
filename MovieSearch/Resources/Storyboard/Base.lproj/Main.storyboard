@@ -38,7 +38,7 @@
                             <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Movie name, overview" translatesAutoresizingMaskIntoConstraints="NO" id="yIV-Af-FCI">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="375" id="x0B-Lr-oHC"/>
+                                    <constraint firstAttribute="height" constant="56" id="FbB-jc-fT3"/>
                                 </constraints>
                                 <textInputTraits key="textInputTraits" returnKeyType="search"/>
                                 <connections>
@@ -55,7 +55,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestionsViewCell" textLabel="vh5-5Q-f4N" rowHeight="40" style="IBUITableViewCellStyleDefault" id="XPN-k5-Ukr">
                                         <rect key="frame" x="0.0" y="28" width="375" height="40"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XPN-k5-Ukr" id="TGs-Wi-gL3">
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.93000000000000005" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="XPN-k5-Ukr" id="TGs-Wi-gL3">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
@@ -76,7 +76,7 @@
                                 </connections>
                             </tableView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="BFm-jw-24d">
-                                <rect key="frame" x="0.0" y="100" width="375" height="20"/>
+                                <rect key="frame" x="0.0" y="133" width="375" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="color" red="0.0078431372550000003" green="0.46666666670000001" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
@@ -86,13 +86,13 @@
                             <constraint firstItem="VO7-qd-Qy4" firstAttribute="leading" secondItem="yIV-Af-FCI" secondAttribute="leading" id="4Fd-u3-cy5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yIV-Af-FCI" secondAttribute="trailing" id="4IJ-pl-cpm"/>
                             <constraint firstItem="atS-cD-MV9" firstAttribute="top" secondItem="yIV-Af-FCI" secondAttribute="bottom" id="9Ej-aa-dL6"/>
-                            <constraint firstAttribute="bottom" secondItem="atS-cD-MV9" secondAttribute="bottom" id="Jdx-hr-SaA"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="atS-cD-MV9" secondAttribute="bottom" id="Jdx-hr-SaA"/>
                             <constraint firstItem="yIV-Af-FCI" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="Ml4-zA-MEh"/>
                             <constraint firstItem="yIV-Af-FCI" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Npk-hr-6R5"/>
                             <constraint firstItem="VO7-qd-Qy4" firstAttribute="trailing" secondItem="yIV-Af-FCI" secondAttribute="trailing" id="Vjq-I3-ex7"/>
                             <constraint firstItem="VO7-qd-Qy4" firstAttribute="top" secondItem="yIV-Af-FCI" secondAttribute="bottom" id="Vn3-a0-lmT"/>
-                            <constraint firstItem="atS-cD-MV9" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="YpV-vb-9fE"/>
-                            <constraint firstItem="atS-cD-MV9" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="jJp-ly-fje"/>
+                            <constraint firstItem="atS-cD-MV9" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="YpV-vb-9fE"/>
+                            <constraint firstItem="atS-cD-MV9" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="jJp-ly-fje"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
