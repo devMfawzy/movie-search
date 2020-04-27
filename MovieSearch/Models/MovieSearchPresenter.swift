@@ -1,10 +1,12 @@
-import Foundation
+import UIKit
 
 protocol MovieSearchPresentation {
     func onSearch(searchTerm: String)
     func onLoadMore()
     func numberOfItems() -> Int
     func items() -> [Movie]
+    func suggestions() -> [String]
+    func suggestionsViewHeight() -> CGFloat
 }
 
 class MovieSearchPresenter: MovieSearchPresentation {
@@ -63,7 +65,18 @@ class MovieSearchPresenter: MovieSearchPresentation {
             delegate?.didGetEmptyResult()
         } else {
             delegate?.didGetMovies()
+            saveSearchTerm()
         }
+    }
+    
+    /**
+     Persist search query in suggestions store
+     */
+    func saveSearchTerm() {
+        guard let searchTerm = searchTerm else {
+            return
+        }
+        SuggestionsStore.shared.save(term: searchTerm)
     }
     
     /**
@@ -99,4 +112,19 @@ class MovieSearchPresenter: MovieSearchPresentation {
     func items() -> [Movie] {
         return self.movies
     }
+    
+    func suggestions() -> [String] {
+        return SuggestionsStore.shared.load() ?? []
+    }
+    
+    /**
+     Calculate the height of suggestions view according to avaiable items
+     */
+    func suggestionsViewHeight() -> CGFloat {
+        let maxItemsCount = 5
+        let rowHeight = 48
+        let itemsCount = min(suggestions().count, maxItemsCount)
+        return CGFloat(rowHeight) * CGFloat(itemsCount)
+    }
+    
 }
