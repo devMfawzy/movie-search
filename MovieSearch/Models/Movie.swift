@@ -8,3 +8,15 @@ struct Movie: Decodable {
     let overview: String?
     
 }
+
+extension Movie {
+    
+    var poster: URL? {
+        guard let posterPath = posterPath else {
+            return .none
+        }
+        let urlString = "\(Constants.imagesbase)\(posterPath)"
+        return URL(string: urlString)
+    }
+    
+}

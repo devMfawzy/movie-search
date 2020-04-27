@@ -7,5 +7,6 @@ target 'MovieSearch' do
 
   # Pods for MovieSearch
   pod 'Alamofire', '~> 4.0'
+  pod 'SDWebImage', '~> 5.0'
 
 end
