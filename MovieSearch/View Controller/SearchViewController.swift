@@ -1,11 +1,3 @@
-//
-//  ViewController.swift
-//  MovieSearch
-//
-//  Created by Mohamed Fawzy on 4/25/20.
-//  Copyright © 2020 fuzzix. All rights reserved.
-//
-
 import UIKit
 
 class SearchViewController: UIViewController {
@@ -59,12 +51,12 @@ extension SearchViewController: MovieSearchDelegate {
     }
     
     func didGetEmptyResult() {
-        let alertController = alertControllerWith(title: "No Result", message: "Can't find movies with the specified term!")
+        let alertController = alertControllerWith(title: "No Result".localized, message: "Can't find movies with the specified term!".localized)
         self.present(alertController, animated: true)
     }
     
     func didGetError(message: String) {
-        let alertController = alertControllerWith(title: "Error", message: message)
+        let alertController = alertControllerWith(title: "Error".localized, message: message)
         self.present(alertController, animated: true)
     }
     
@@ -78,7 +70,7 @@ extension SearchViewController: MovieSearchDelegate {
     
     private func alertControllerWith(title: String, message: String) -> UIAlertController {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default)
+        let okAction = UIAlertAction(title: "OK".localized, style: .default)
         alertController.addAction(okAction)
         return alertController
     }

@@ -35,7 +35,7 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="Poq-qe-6n8"/>
                                 </connections>
                             </tableView>
-                            <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Movie name" translatesAutoresizingMaskIntoConstraints="NO" id="yIV-Af-FCI">
+                            <searchBar contentMode="redraw" searchBarStyle="prominent" placeholder="Movie name, overview" translatesAutoresizingMaskIntoConstraints="NO" id="yIV-Af-FCI">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="375" id="x0B-Lr-oHC"/>
