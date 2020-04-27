@@ -11,13 +11,17 @@ import UIKit
 class SearchViewController: UIViewController {
     
     private let SearchCellIdentifier = "SearchViewCell"
+    private let SuggestionsCellIdentifier = "SuggestionsViewCell"
+    
     var movieSearchPresenter: MovieSearchPresentation?
     
     // MARK: - IBOutlets
 
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var searchResultsTableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar!
     @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private weak var suggestionsTableView: UITableView!
+    @IBOutlet private weak var suggestionViewHeight: NSLayoutConstraint!
     
     // MARK: - View Controller Life Cycle
     
@@ -31,10 +35,15 @@ class SearchViewController: UIViewController {
      setup table view and search bar
      */
     private func setupViews() {
-        tableView.contentInset = UIEdgeInsets(top: 56, left: 0, bottom: 0, right: 0)
-        tableView.tableFooterView = UIView()
-        tableView.register(UINib(nibName: SearchCellIdentifier, bundle: nil), forCellReuseIdentifier: SearchCellIdentifier)
+        searchResultsTableView.tableFooterView = UIView()
+        searchResultsTableView.register(UINib(nibName: SearchCellIdentifier, bundle: nil), forCellReuseIdentifier: SearchCellIdentifier)
         searchBar.setTextFieldBackgroundColor(.white)
+        suggestionsTableView.register(UITableViewCell.self, forCellReuseIdentifier: SuggestionsCellIdentifier)
+        if #available(iOS 13.0, *) {
+            activityIndicator.style = .large
+        } else {
+            activityIndicator.style = .whiteLarge
+        }
         searchBar.becomeFirstResponder()
     }
     
@@ -45,7 +54,7 @@ class SearchViewController: UIViewController {
 extension SearchViewController: MovieSearchDelegate {
         
     func didGetMovies() {
-        self.tableView.reloadData()
+        self.searchResultsTableView.reloadData()
         self.searchBar.resignFirstResponder()
     }
     
@@ -91,6 +100,7 @@ extension SearchViewController: UISearchBarDelegate {
         guard !encodedSearchText.isEmpty else {
             return
         }
+        suggestionsTableView.isHidden = true
         movieSearchPresenter?.onSearch(searchTerm: encodedSearchText)
     }
     
@@ -101,6 +111,16 @@ extension SearchViewController: UISearchBarDelegate {
         return .topAttached
     }
     
+    /**
+     Show saved suggestions and set the hight of the suggestions table view
+     */
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        suggestionsTableView.reloadData()
+        let height = movieSearchPresenter?.suggestionsViewHeight() ?? 0.0
+        suggestionViewHeight.constant = height
+        suggestionsTableView.isHidden = false
+    }
+    
 }
 
 // MARK: - Table View Data Source
@@ -108,17 +128,32 @@ extension SearchViewController: UISearchBarDelegate {
 extension SearchViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return movieSearchPresenter?.numberOfItems() ?? 0
+        var numberOfItems: Int?
+        if tableView == searchResultsTableView {
+            numberOfItems = movieSearchPresenter?.numberOfItems()
+        } else {
+            numberOfItems = movieSearchPresenter?.suggestions().count
+        }
+        return numberOfItems ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SearchCellIdentifier, for: indexPath)
-        guard let movies = movieSearchPresenter?.items() else {
-            return cell
-        }
-        if let cell = cell as? SearchViewCell {
-            let movie = movies[indexPath.row]
-            cell.configureWith(movie)
+        let cell: UITableViewCell
+        if tableView == searchResultsTableView {
+            cell = tableView.dequeueReusableCell(withIdentifier: SearchCellIdentifier, for: indexPath)
+            guard let movies = movieSearchPresenter?.items() else {
+                return cell
+            }
+            if let cell = cell as? SearchViewCell {
+                let movie = movies[indexPath.row]
+                cell.configureWith(movie)
+            }
+            cell.selectionStyle = .none
+        } else {
+            cell = tableView.dequeueReusableCell(withIdentifier: SuggestionsCellIdentifier, for: indexPath)
+            let suggestions = movieSearchPresenter?.suggestions()
+            let suggestion = suggestions?[indexPath.row]
+            cell.textLabel?.text = suggestion
         }
         return cell
     }
@@ -133,6 +168,9 @@ extension SearchViewController: UITableViewDelegate {
      Checl if reached the last element in the table view, if so, load more items
      */
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard tableView == searchResultsTableView else {
+            return
+        }
         guard let numberOfItems = movieSearchPresenter?.numberOfItems() else {
             return
         }
@@ -140,6 +178,22 @@ extension SearchViewController: UITableViewDelegate {
         if indexPath.row == lastItem {
             movieSearchPresenter?.onLoadMore()
         }
+    }
+    
+    /**
+     Search  movies with the selected suggested term
+     */
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard tableView == suggestionsTableView else {
+            return
+        }
+        let suggestions = movieSearchPresenter?.suggestions()
+        guard let suggestion = suggestions?[indexPath.row] else {
+            return
+        }
+        searchBar.text = suggestion
+        suggestionsTableView.isHidden = true
+        movieSearchPresenter?.onSearch(searchTerm: suggestion)
     }
     
 }
@@ -152,10 +206,14 @@ extension SearchViewController: UIScrollViewDelegate {
      Hide keyboard if scrolled and results exist
      */
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard scrollView == searchResultsTableView else {
+            return
+        }
         guard let numberOfItems = movieSearchPresenter?.numberOfItems(), numberOfItems > 0 else {
             return
         }
         self.searchBar.resignFirstResponder()
+        self.suggestionsTableView.isHidden = true
     }
     
 }
