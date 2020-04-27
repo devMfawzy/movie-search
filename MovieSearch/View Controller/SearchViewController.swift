@@ -32,7 +32,7 @@ class SearchViewController: UIViewController {
     private func setupViews() {
         tableView.contentInset = UIEdgeInsets(top: 56, left: 0, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: SearchCellIdentifier)
+        tableView.register(UINib(nibName: SearchCellIdentifier, bundle: nil), forCellReuseIdentifier: SearchCellIdentifier)
         searchBar.setTextFieldBackgroundColor(.white)
         searchBar.becomeFirstResponder()
     }
@@ -107,8 +107,10 @@ extension SearchViewController: UITableViewDataSource {
         guard let movies = movieSearchPresenter?.items() else {
             return cell
         }
-        let movie = movies[indexPath.row]
-        cell.textLabel?.text = movie.title
+        if let cell = cell as? SearchViewCell {
+            let movie = movies[indexPath.row]
+            cell.configureWith(movie)
+        }
         return cell
     }
     
