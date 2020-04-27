@@ -17,4 +17,15 @@ protocol MovieSearchDelegate: class {
      */
     func didGetError(message: String)
     
+    /**
+     A delegate methos to be called when  starting fetching data
+     */
+    func didStartSearching()
+    
+    /**
+     A delegate methos to be called when finish fetching data
+     */
+    func didFinishSearching()
+
+    
 }

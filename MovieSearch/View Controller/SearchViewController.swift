@@ -17,6 +17,7 @@ class SearchViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var searchBar: UISearchBar!
+    @IBOutlet private weak var activityIndicator: UIActivityIndicatorView!
     
     // MARK: - View Controller Life Cycle
     
@@ -56,6 +57,14 @@ extension SearchViewController: MovieSearchDelegate {
     func didGetError(message: String) {
         let alertController = alertControllerWith(title: "Error", message: message)
         self.present(alertController, animated: true)
+    }
+    
+    func didStartSearching() {
+        activityIndicator.startAnimating()
+    }
+    
+    func didFinishSearching() {
+        activityIndicator.stopAnimating()
     }
     
     private func alertControllerWith(title: String, message: String) -> UIAlertController {

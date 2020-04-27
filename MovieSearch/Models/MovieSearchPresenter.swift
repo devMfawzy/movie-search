@@ -31,8 +31,11 @@ class MovieSearchPresenter: MovieSearchPresentation {
         guard let searchTerm = self.searchTerm else {
             return
         }
+        self.isFetchingData = true
+        delegate?.didStartSearching()
         MovieSearcher.shared.search(searchTerm, page: page) { [weak self] (error, movieSearchResponse) in
             self?.isFetchingData = false
+            self?.delegate?.didFinishSearching()
             if let error = error {
                 self?.delegate?.didGetError(message: error)
                 return
